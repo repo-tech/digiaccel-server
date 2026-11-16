@@ -1,22 +1,13 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 
-let memoryServer;
-
-export async function connectDb() {
-  const uri = process.env.MONGO_URI;
-  if (uri) {
-    await mongoose.connect(uri);
-    console.log(`MongoDB connected: ${mongoose.connection.host}`);
-    return;
-  }
-  memoryServer = await MongoMemoryServer.create();
-  const memoryUri = memoryServer.getUri();
-  await mongoose.connect(memoryUri);
-  console.log(`MongoDB (in-memory) connected`);
+export async function connectDB() {
+  if (!process.env.MONGO_URI) throw new Error('MONGO_URI is required to connect to MongoDB');
+  const cached = global._mongoose || (global._mongoose = { conn: null, promise: null });
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) cached.promise = mongoose.connect(process.env.MONGO_URI, { bufferCommands: false, serverSelectionTimeoutMS: 8000 });
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
 
-export async function disconnectDb() {
-  await mongoose.connection.close();
-  if (memoryServer) await memoryServer.stop();
-}
+export const connectDb = connectDB;
+export async function disconnectDb() { await mongoose.connection.close(); global._mongoose = { conn: null, promise: null }; }

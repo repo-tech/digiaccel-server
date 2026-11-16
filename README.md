@@ -1,5 +1,17 @@
 # Digiccial To-Do
 
+## Deployment (Vercel)
+
+Deploy the client and server as two Vercel projects from this repository.
+
+1. Create two Vercel projects. Set the backend project's Root Directory to `server` and Framework Preset to `Other`.
+2. Set backend environment variables `MONGO_URI` and `CLIENT_URL` (the frontend URL, without a trailing slash). Deploy it, then test `https://<backend>.vercel.app/api/health`.
+3. Set the frontend project's Root Directory to `client` and Framework Preset to `Vite`. Use Build Command `npm run build`, Output Directory `dist`, and set `VITE_API_URL=https://<backend>.vercel.app/api`. Redeploy after setting environment variables.
+4. In MongoDB Atlas, open Network Access and allow `0.0.0.0/0` so Vercel can reach the database.
+5. Troubleshooting: `STATIC_BUILD_NO_OUT_DIR` means the Root Directory is not `client`; a CORS error means `CLIENT_URL` is incorrect; a 404 on refresh means `client/vercel.json` is missing.
+
+For local development, copy `server/.env.example` and `client/.env.example` to `.env` files in their respective folders and set `MONGO_URI` to a reachable MongoDB instance.
+
 A mobile-first MERN task manager matching the Figma design: weekly scheduling (Monday–Sunday), live weekly progress, status controls, expandable week history, search, and swipe-to-delete. The desktop layout retains a focused phone-width surface (max ~430px).
 
 ## Tech stack

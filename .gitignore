@@ -2,3 +2,12 @@ node_modules
 dist
 .env
 *.log
+.vercel
+client/node_modules
+client/dist
+client/.env
+client/.vercel
+server/node_modules
+server/dist
+server/.env
+server/.vercel
