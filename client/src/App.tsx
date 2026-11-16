@@ -4,16 +4,12 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 
 export default function App() {
-  const onboarded = localStorage.getItem('todo-onboarded') === '1';
   return (
     <Routes>
       <Route path="/" element={<Onboarding />} />
       <Route path="/home" element={<Home />} />
       <Route path="/search" element={<Search />} />
-      <Route
-        path="*"
-        element={<Navigate to={onboarded ? '/home' : '/'} replace />}
-      />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
