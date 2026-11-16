@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base; @tailwind components; @tailwind utilities;
+* { -webkit-tap-highlight-color: transparent; } body { @apply m-0 bg-page font-poppins text-slate-800; } button,input,textarea { font: inherit; } button { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-royal focus-visible:ring-offset-2; } .app-shell { @apply min-h-screen max-w-[430px] mx-auto bg-page relative overflow-hidden; } .icon-button { @apply h-11 w-11 inline-flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100; } .field { @apply w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-royal focus:ring-2 focus:ring-blue-100; } .skeleton { @apply animate-pulse rounded-xl bg-slate-200; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }

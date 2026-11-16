@@ -1,0 +1,1 @@
+export default { content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'], theme: { extend: { fontFamily: { poppins: ['Poppins', 'sans-serif'] }, colors: { royal: '#4169E1', navy: '#243C9E', track: '#D8DAF8', page: '#FAFAFC', done: '#E8EDFF', pending: '#FFE4E4' }, boxShadow: { soft: '0 8px 30px rgba(41,55,100,.08)' } } }, plugins: [] };
